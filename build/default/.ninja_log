@@ -1,0 +1,24 @@
+# ninja log v5
+0	134	0	CMakeFiles/blastee.dir/blastee.cpp.o	3a6f8970aa9d6b1f
+0	134	0	CMakeFiles/blasters.dir/blasters.cpp.o	9d7bc0c0b020b97d
+134	225	0	blastee	18a8d20bca0526fb
+134	229	0	blasters	95576610c1a7a315
+0	222	0	CMakeFiles/blastee.dir/blastee.cpp.o	3a6f8970aa9d6b1f
+222	339	0	blastee	18a8d20bca0526fb
+0	204	0	CMakeFiles/blasters.dir/blasters.cpp.o	9d7bc0c0b020b97d
+204	264	0	blasters	95576610c1a7a315
+0	137	0	CMakeFiles/blastee.dir/blastee.cpp.o	3a6f8970aa9d6b1f
+137	201	0	blastee	18a8d20bca0526fb
+0	2	0	clean	a7c70eacb11a5051
+0	141	0	CMakeFiles/blastee.dir/blastee.cpp.o	3a6f8970aa9d6b1f
+0	180	0	CMakeFiles/blasters.dir/blasters.cpp.o	9d7bc0c0b020b97d
+141	228	0	blastee	18a8d20bca0526fb
+180	272	0	blasters	95576610c1a7a315
+0	93	0	blasters	95576610c1a7a315
+0	100	0	blastee	18a8d20bca0526fb
+0	179	0	CMakeFiles/blastee.dir/blastee.cpp.o	3a6f8970aa9d6b1f
+179	241	0	blastee	18a8d20bca0526fb
+0	169	0	CMakeFiles/blasters.dir/blasters.cpp.o	9d7bc0c0b020b97d
+169	240	0	blasters	95576610c1a7a315
+0	201	0	CMakeFiles/blasters.dir/blasters.cpp.o	9d7bc0c0b020b97d
+201	268	0	blasters	95576610c1a7a315

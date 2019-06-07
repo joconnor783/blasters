@@ -1,0 +1,4 @@
+/home/jim/project_files/blasters/build/default/CMakeFiles/edit_cache.dir
+/home/jim/project_files/blasters/build/default/CMakeFiles/rebuild_cache.dir
+/home/jim/project_files/blasters/build/default/CMakeFiles/blastee.dir
+/home/jim/project_files/blasters/build/default/CMakeFiles/blasters.dir
