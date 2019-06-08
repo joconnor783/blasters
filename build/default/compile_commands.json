@@ -1,13 +1,25 @@
 [
 {
   "directory": "/home/jim/project_files/blasters/build/default",
-  "command": "/usr/bin/c++     -O3 -DNDEBUG   -o CMakeFiles/blastee.dir/blastee.cpp.o -c /home/jim/project_files/blasters/blastee.cpp",
+  "command": "/usr/bin/c++    -I../../  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/blastee.dir/blastee.cpp.o -c /home/jim/project_files/blasters/blastee.cpp",
   "file": "/home/jim/project_files/blasters/blastee.cpp"
 },
 
 {
   "directory": "/home/jim/project_files/blasters/build/default",
-  "command": "/usr/bin/c++     -O3 -DNDEBUG   -o CMakeFiles/blasters.dir/blasters.cpp.o -c /home/jim/project_files/blasters/blasters.cpp",
+  "command": "/usr/bin/c++    -I../../  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/blastee.dir/Log.cpp.o -c /home/jim/project_files/blasters/Log.cpp",
+  "file": "/home/jim/project_files/blasters/Log.cpp"
+},
+
+{
+  "directory": "/home/jim/project_files/blasters/build/default",
+  "command": "/usr/bin/c++    -I../../  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/blasters.dir/blasters.cpp.o -c /home/jim/project_files/blasters/blasters.cpp",
   "file": "/home/jim/project_files/blasters/blasters.cpp"
+},
+
+{
+  "directory": "/home/jim/project_files/blasters/build/default",
+  "command": "/usr/bin/c++    -I../../  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/blasters.dir/Log.cpp.o -c /home/jim/project_files/blasters/Log.cpp",
+  "file": "/home/jim/project_files/blasters/Log.cpp"
 }
 ]

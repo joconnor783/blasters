@@ -16,6 +16,12 @@ using namespace std;
 #include <sys/time.h>
 #include <ctype.h>
 
+#include <Log.h>
+
+
+//class ServerLog : Log {};
+
+
 #define BUF_SIZE 50*1024
 #define DATA_PACKET 'D'
 #define END_PACKET 'E'
@@ -35,6 +41,15 @@ void *get_in_addr(struct sockaddr *sa);
 
 int main(int argc, char **argv)
 {
+
+
+	//ServerLog::getInstance().init("blastee.log");
+
+	Log::getInstance().init("blastee");
+
+	Log::getInstance().log("Hello blastee log!");
+
+	//slog.getInstance().log("Hello blastee log!\n");
 
 	/* Set up signal handler for graceful exit on SIGINT */
 	struct sigaction act;
