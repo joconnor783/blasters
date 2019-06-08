@@ -38,30 +38,20 @@ void Log::init(std::string logname)
 	openlog(logname_.c_str(), LOG_CONS, LOG_LOCAL4);
 }
 
+void Log::log( const char * format, ... )
+{
+  char buffer[2048];
+  va_list args;
 
-//template<typename... Args> void Log::log(const char * f, Args... args)
-//{
-//if (!init)
-//{
-//	return;
-//}
-//  printf(f, args...);
-//  syslog(LOG_INFO | LOG_LOCAL4, f, args...);
-//}
+  if (!init_)
+  {
+	  return;
+  }
 
-//void Log::log( const char * format, ... )
-//{
-//  char buffer[2048];
-//  va_list args;
-//
-//  if (!init_)
-//  {
-//	  return;
-//  }
-//
-//  va_start (args, format);
-//  vsprintf (buffer,format, args);
-//
-//  syslog(LOG_INFO | LOG_LOCAL4, format, args...);
-//  va_end (args);
-//}
+  va_start (args, format);
+  vsprintf (buffer,format, args);
+
+  printf("%s\n", buffer);
+  syslog(LOG_INFO | LOG_LOCAL4, "%s", buffer);
+  va_end (args);
+}

@@ -28,20 +28,7 @@ public:
 
     void init(std::string logname);
 
-    //void log( const char * format, ... );
-
-    //template<typename... Args> void log(const char * f, Args... args);
-
-    template<typename... Args> void log(const char * f, Args... args)
-    {
-    	if (!init_)
-    	{
-    		return;
-    	}
-      printf(f, args...);
-      syslog(LOG_INFO | LOG_LOCAL4, f, args...);
-    }
-
+    void log( const char * format, ... );
 
     Log (Log const&)            = delete;
     void operator=(Log const&)  = delete;
