@@ -11,5 +11,6 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/rapidxml-1.13/)
 
 
 set(SOURCES Log.h Log.cpp Loader.h Loader.cpp ${CMAKE_CURRENT_SOURCE_DIR}/rapidxml-1.13/rapidxml.hpp ${CMAKE_CURRENT_SOURCE_DIR}/rapidxml-1.13/rapidxml_utils.hpp)
+set(BLASTEE_SRC BlasteeLoader.h BlasteeLoader.cpp)
 add_executable(blasters blasters.cpp ${SOURCES})
-add_executable(blastee blastee.cpp ${SOURCES})
+add_executable(blastee blastee.cpp ${SOURCES} ${BLASTEE_SRC})

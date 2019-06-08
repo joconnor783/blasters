@@ -69,6 +69,12 @@ build CMakeFiles/blastee.dir/Loader.cpp.o: CXX_COMPILER__blastee ../../Loader.cp
   INCLUDES = -I../../ -I../../rapidxml-1.13
   OBJECT_DIR = CMakeFiles/blastee.dir
   OBJECT_FILE_DIR = CMakeFiles/blastee.dir
+build CMakeFiles/blastee.dir/BlasteeLoader.cpp.o: CXX_COMPILER__blastee ../../BlasteeLoader.cpp
+  DEP_FILE = CMakeFiles/blastee.dir/BlasteeLoader.cpp.o.d
+  FLAGS = -O3 -DNDEBUG   -std=c++11
+  INCLUDES = -I../../ -I../../rapidxml-1.13
+  OBJECT_DIR = CMakeFiles/blastee.dir
+  OBJECT_FILE_DIR = CMakeFiles/blastee.dir
 
 # =============================================================================
 # Link build statements for EXECUTABLE target blastee
@@ -77,7 +83,7 @@ build CMakeFiles/blastee.dir/Loader.cpp.o: CXX_COMPILER__blastee ../../Loader.cp
 #############################################
 # Link the executable blastee
 
-build blastee: CXX_EXECUTABLE_LINKER__blastee CMakeFiles/blastee.dir/blastee.cpp.o CMakeFiles/blastee.dir/Log.cpp.o CMakeFiles/blastee.dir/Loader.cpp.o
+build blastee: CXX_EXECUTABLE_LINKER__blastee CMakeFiles/blastee.dir/blastee.cpp.o CMakeFiles/blastee.dir/Log.cpp.o CMakeFiles/blastee.dir/Loader.cpp.o CMakeFiles/blastee.dir/BlasteeLoader.cpp.o
   FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = -rdynamic
   OBJECT_DIR = CMakeFiles/blastee.dir

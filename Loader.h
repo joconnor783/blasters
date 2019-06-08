@@ -20,9 +20,10 @@ public:
 	Loader(std::string configPath);
 	virtual ~Loader();
 
-private:
+protected:
 	std::string config_;
 	rapidxml::file<> xmlFile_;
+	rapidxml::xml_document<> doc_;
 };
 
 #endif /* LOADER_H_ */

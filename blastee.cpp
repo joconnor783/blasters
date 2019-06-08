@@ -18,7 +18,7 @@ using namespace std;
 #include <ctype.h>
 
 #include <Log.h>
-#include <Loader.h>
+#include <BlasteeLoader.h>
 
 
 class ServerLog : public Log {};
@@ -49,7 +49,9 @@ int main(int argc, char **argv)
 	ServerLog::getInstance().log("Hello blastee log!");
 
 
-	Loader config("../../data/blasteeConfig.xml");
+	BlasteeLoader config("../../data/blasteeConfig.xml");
+
+	ServerLog::getInstance().log("Logfile path: %s", config.getLogfilePath().c_str());
 
 
 	/* Set up signal handler for graceful exit on SIGINT */
