@@ -7,8 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/rapidxml-1.13/)
 
 
-set(SOURCES Log.h Log.cpp)
+set(SOURCES Log.h Log.cpp Loader.h Loader.cpp ${CMAKE_CURRENT_SOURCE_DIR}/rapidxml-1.13/rapidxml.hpp ${CMAKE_CURRENT_SOURCE_DIR}/rapidxml-1.13/rapidxml_utils.hpp)
 add_executable(blasters blasters.cpp ${SOURCES})
 add_executable(blastee blastee.cpp ${SOURCES})

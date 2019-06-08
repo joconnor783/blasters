@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 #include <stdio.h>
@@ -17,6 +18,7 @@ using namespace std;
 #include <ctype.h>
 
 #include <Log.h>
+#include <Loader.h>
 
 
 class ServerLog : public Log {};
@@ -45,6 +47,10 @@ int main(int argc, char **argv)
 	ServerLog::getInstance().init("blastee");
 
 	ServerLog::getInstance().log("Hello blastee log!");
+
+
+	Loader config("../../data/blasteeConfig.xml");
+
 
 	/* Set up signal handler for graceful exit on SIGINT */
 	struct sigaction act;
