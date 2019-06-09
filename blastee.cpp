@@ -44,14 +44,16 @@ void *get_in_addr(struct sockaddr *sa);
 int main(int argc, char **argv)
 {
 
-	ServerLog::getInstance().init("blastee");
 
-	ServerLog::getInstance().log("Hello blastee log!");
 
 
 	BlasteeLoader config("../../data/blasteeConfig.xml");
 
-	ServerLog::getInstance().log("Logfile path: %s", config.getLogfilePath().c_str());
+	ServerLog::getInstance().init("blastee", config.getLogfilePath());
+
+	ServerLog::getInstance().log("Hello blastee log!");
+
+	//ServerLog::getInstance().log("Logfile path: %s", config.getLogfilePath().c_str());
 
 
 	/* Set up signal handler for graceful exit on SIGINT */

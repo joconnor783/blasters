@@ -21,6 +21,11 @@ Log::Log():
 Log::~Log()
 {
 	closelog();
+
+	if (init_)
+	{
+		file_.close();
+	}
 }
 
 Log& Log::getInstance()
@@ -30,12 +35,22 @@ Log& Log::getInstance()
 	return logger;
 }
 
-void Log::init(std::string logname)
+void Log::init(std::string logname, std::string filepath)
 {
 	logname_ = logname;
-	init_ = true;
 
 	openlog(logname_.c_str(), LOG_CONS, LOG_LOCAL4);
+
+	file_.open(filepath, fstream::out | fstream::app);
+
+	if (file_.is_open())
+	{
+		init_ = true;
+	}
+	else
+	{
+		std::cout << "Could not open log file: " << filepath << std::endl;
+	}
 }
 
 void Log::log( const char * format, ... )
@@ -53,5 +68,8 @@ void Log::log( const char * format, ... )
 
   printf("%s\n", buffer);
   syslog(LOG_INFO | LOG_LOCAL4, "%s", buffer);
+
+  file_ << buffer << std::endl;
+
   va_end (args);
 }

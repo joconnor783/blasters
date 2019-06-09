@@ -9,10 +9,15 @@
 #define LOG_H_
 
 #include <string>
+#include <iostream>
+#include <fstream>
+
 
 #include <syslog.h>
 #include <stdarg.h>
 #include <stdio.h>
+
+using namespace std;
 
 class Log {
 public:
@@ -26,7 +31,7 @@ public:
 
 
 
-    void init(std::string logname);
+    void init(std::string logname, std::string filepath);
 
     void log( const char * format, ... );
 
@@ -38,6 +43,7 @@ private:
 
 	bool init_;
 	std::string logname_;
+	std::fstream file_;
 };
 
 #endif /* LOG_H_ */
