@@ -16,6 +16,13 @@ using namespace std;
 #include <sys/wait.h>
 #include <time.h>
 
+#include <Log.h>
+#include <BlastersLoader.h>
+#include <Packet.h>
+
+
+class ClientLog : public Log {};
+
 #define DATA_PACKET 'D'
 #define END_PACKET 'E'
 #define ECHO_PACKET 'C'
@@ -43,6 +50,11 @@ static void printusage(void){
 int main(int argc, char **argv)
 {
 
+	BlastersLoader config("../../data/blastersConfig.xml");
+
+	ClientLog::getInstance().init("blasters", config.getLogfilePath());
+
+	ClientLog::getInstance().log("Hello blasters log!");
 
 	/* type of packet */
 	char type  = 'D';  // initial setup
