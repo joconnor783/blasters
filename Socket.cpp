@@ -59,6 +59,7 @@ bool Socket::init()
 	// server
 	if (hostname_.empty())
 	{
+		cout<<"socket init for server\n";
 		struct addrinfo hints, *servinfo, *p;
 
 		memset(&hints, 0, sizeof(hints));
@@ -89,7 +90,7 @@ bool Socket::init()
 
 				int yes = 1;
 
-				if (setsockopt(fd_, SOL_SOCKET,SO_REUSEADDR,&yes,sizeof(int)) == -1)
+				if (setsockopt(fd_, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int)) == -1)
 				{
 					perror("setsockopt");
 				}
@@ -124,6 +125,8 @@ bool Socket::init()
 	else
 	{
 		struct addrinfo hints, *servinfo, *p;
+
+		cout<<"socket init for client\n";
 
 		memset(&hints, 0, sizeof(hints));
 		hints.ai_family = AF_UNSPEC;
@@ -178,6 +181,8 @@ bool Socket::sendPacketToServer(Packet packet)
 {
 	vector<char> data = packet.encodePacket();
 
+	cout<<"Sending packet to server of size: " << data.size() << endl;
+
 	if (sendto(fd_, &data[0], data.size(), 0, addr, addrLen) < 0)
 	{
 		fprintf(stderr, "sendto server error\n");
@@ -190,6 +195,8 @@ bool Socket::sendPacketToServer(Packet packet)
 bool Socket::sendPacketToClient(Packet packet)
 {
 	vector<char> data = packet.encodePacket();
+
+	cout<<"Sending packet to client of size: " << data.size() << endl;
 
 	if (sendto(fd_, &data[0], data.size(), 0, (struct sockaddr*) &recvFrom, sizeof(recvFrom)) < 0)
 	{

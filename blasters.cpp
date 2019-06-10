@@ -69,11 +69,20 @@ int main(int argc, char **argv)
 	/* setup socket */
 	Socket sock(hostname, port);
 
+	bool success = sock.init();
+
+	if (!success)
+	{
+		ClientLog::getInstance().log("ERROR: could not init blasters socket!");
+		exit(1);
+	}
+
 	Packet packSyn(PacketType::pSyn);
 
 	Packet packRecv(PacketType::pNack);
 
-	bool success = sock.sendPacketToServer(packSyn);
+	ClientLog::getInstance().log("Blasters sending packet");
+	success = sock.sendPacketToServer(packSyn);
 
 	if (!success)
 	{
@@ -81,6 +90,7 @@ int main(int argc, char **argv)
 	}
 	else
 	{
+		ClientLog::getInstance().log("Blasters waiting for packet...");
 		packRecv = sock.receivePacket();
 
 		if (packRecv.getType() == PacketType::pNack)

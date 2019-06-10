@@ -11,6 +11,8 @@
 
 #include <algorithm>
 
+#include <iostream>
+
 
 const int kLengthHeader = 4; // First 4 bytes is the length of the packet
 
@@ -65,10 +67,11 @@ Packet::~Packet() {
 
 vector<char> Packet::encodePacket()
 {
-	vector<char> data;
-	int offset;
 	unsigned int length = kLengthHeader + sizeof(type_) + sizeof(session_) + sizeof(seq_) + payload_.size();
-	data.reserve(length);
+	vector<char> data(length);
+	int offset;
+
+	//data.reserve(length);
 
 	*(reinterpret_cast<unsigned int *>(&data[0])) = htonl(length);
 	data[kLengthHeader] = type_;
@@ -78,6 +81,8 @@ vector<char> Packet::encodePacket()
 	*(reinterpret_cast<unsigned int *>(&data[offset])) = htonl(seq_);
 	offset += sizeof(session_);
 	data.insert(data.begin() + offset, payload_.begin(), payload_.end());
+
+	cout << "encoded packet of size: " << data.size() << endl;
 
 	return data;
 }

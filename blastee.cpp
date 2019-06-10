@@ -61,6 +61,14 @@ int main(int argc, char **argv)
 	/* setup socket */
 	Socket sock(port);
 
+	bool success = sock.init();
+
+	if (!success)
+	{
+		ServerLog::getInstance().log("ERROR: could not init blastee socket!");
+		exit(1);
+	}
+
 	Packet packSyn(PacketType::pSyn);
 
 	Packet packRecv(PacketType::pNack);
@@ -76,7 +84,7 @@ int main(int argc, char **argv)
 	else
 	{
 
-		bool success = sock.sendPacketToClient(packRecv);
+		success = sock.sendPacketToClient(packRecv);
 
 		if (!success)
 		{
