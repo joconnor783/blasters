@@ -25,6 +25,12 @@
 
 {
   "directory": "/home/jim/project_files/blasters/build/default",
+  "command": "/usr/bin/c++    -I../../ -I../../rapidxml-1.13  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/blastee.dir/Socket.cpp.o -c /home/jim/project_files/blasters/Socket.cpp",
+  "file": "/home/jim/project_files/blasters/Socket.cpp"
+},
+
+{
+  "directory": "/home/jim/project_files/blasters/build/default",
   "command": "/usr/bin/c++    -I../../ -I../../rapidxml-1.13  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/blastee.dir/BlasteeLoader.cpp.o -c /home/jim/project_files/blasters/BlasteeLoader.cpp",
   "file": "/home/jim/project_files/blasters/BlasteeLoader.cpp"
 },
@@ -51,6 +57,12 @@
   "directory": "/home/jim/project_files/blasters/build/default",
   "command": "/usr/bin/c++    -I../../ -I../../rapidxml-1.13  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/blasters.dir/Packet.cpp.o -c /home/jim/project_files/blasters/Packet.cpp",
   "file": "/home/jim/project_files/blasters/Packet.cpp"
+},
+
+{
+  "directory": "/home/jim/project_files/blasters/build/default",
+  "command": "/usr/bin/c++    -I../../ -I../../rapidxml-1.13  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/blasters.dir/Socket.cpp.o -c /home/jim/project_files/blasters/Socket.cpp",
+  "file": "/home/jim/project_files/blasters/Socket.cpp"
 },
 
 {

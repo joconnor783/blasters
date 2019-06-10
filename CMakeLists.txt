@@ -10,7 +10,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/rapidxml-1.13/)
 
 set(XML ${CMAKE_CURRENT_SOURCE_DIR}/rapidxml-1.13/rapidxml.hpp ${CMAKE_CURRENT_SOURCE_DIR}/rapidxml-1.13/rapidxml_utils.hpp)
-set(SOURCES Log.h Log.cpp Loader.h Loader.cpp Packet.h Packet.cpp)
+set(SOURCES Log.h Log.cpp Loader.h Loader.cpp Packet.h Packet.cpp Socket.h Socket.cpp)
 set(BLASTEE_SRC BlasteeLoader.h BlasteeLoader.cpp)
 set(BLASTERS_SRC BlastersLoader.h BlastersLoader.cpp)
 

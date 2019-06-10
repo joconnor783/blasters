@@ -32,6 +32,7 @@ public:
 	Packet(PacketType type, unsigned int session, unsigned int seq);
 	Packet(PacketType type, unsigned int session, unsigned int seq, vector<char> payload);
 	virtual ~Packet();
+	Packet & operator= ( const Packet & ) = default;
 
 	vector<char> encodePacket();
 
