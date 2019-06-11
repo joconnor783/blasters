@@ -8,6 +8,8 @@
 #include "Packet.h"
 
 #include <arpa/inet.h>
+#include <stdarg.h>
+#include <stdio.h>
 
 #include <algorithm>
 
@@ -82,7 +84,7 @@ vector<char> Packet::encodePacket()
 	offset += sizeof(session_);
 	data.insert(data.begin() + offset, payload_.begin(), payload_.end());
 
-	cout << "encoded packet of size: " << data.size() << endl;
+	log("encoded packet of size: %d", data.size());
 
 	return data;
 }
@@ -101,6 +103,8 @@ Packet Packet::decodePacket(vector<char> data)
 	unsigned int session;
 	unsigned int seq;
 	unsigned int offset;
+
+	log("decoded packet of size: %d", length);
 
 	if (length < minLength)
 	{
@@ -133,5 +137,25 @@ Packet Packet::decodePacket(vector<char> data)
 	Packet packet(type, session, seq, payload);
 
 	return packet;
+}
+
+void Packet::log(const char * format, ... )
+{
+  char buffer[2048];
+  va_list args;
+
+  if (logCbk_ == nullptr)
+  {
+	  cout << "missing log callback\n";
+	  return;
+  }
+
+  va_start(args, format);
+  vsnprintf(buffer, 2048, format, args);
+
+  cout << "packet calling callback\n";
+  logCbk_(buffer);
+
+  va_end (args);
 }
 

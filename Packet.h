@@ -9,9 +9,14 @@
 #define PACKET_H_
 
 #include <vector>
+#include <string>
+#include <functional>
 
 using namespace std;
 
+using LogCallback = std::function<void(char *)>;
+
+static LogCallback logCbk_;
 
 
 enum PacketType
@@ -26,6 +31,8 @@ enum PacketType
 };
 
 class Packet {
+
+
 public:
 	Packet();
 	Packet(PacketType type);
@@ -43,11 +50,16 @@ public:
 	inline unsigned int getSequence() {return seq_;};
 	inline vector<char> getPayload() {return payload_;};
 
+	static inline void setLogCallback(LogCallback callback) {logCbk_ = callback;};
+
 private:
 	PacketType type_;
 	unsigned int session_;
 	unsigned int seq_;
 	vector<char> payload_;
+
+	static void log( const char * format, ... );
+
 };
 
 #endif /* PACKET_H_ */

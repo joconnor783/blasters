@@ -33,7 +33,10 @@ static void setdoneflag(int signo) {
 	doneflag = 1;
 }
 
-
+void logProxy(char *msg)
+{
+	ClientLog::getInstance().log("%s", msg);
+}
 
 int main(int argc, char **argv)
 {
@@ -44,6 +47,7 @@ int main(int argc, char **argv)
 
 	ClientLog::getInstance().log("Hello blasters log!");
 
+	Packet::setLogCallback(LogCallback(logProxy));
 
 
 	/* nanosleep */
