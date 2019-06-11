@@ -22,9 +22,12 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <cstring>
+#include <stdarg.h>
 
 
 #include <iostream>
+
+SocketLogCallback Socket::logCbk_ = nullptr;
 
 Socket::Socket(string hostname, unsigned short port):
 	hostname_(hostname),
@@ -59,7 +62,7 @@ bool Socket::init()
 	// server
 	if (hostname_.empty())
 	{
-		cout<<"socket init for server\n";
+		log("socket init for server");
 		struct addrinfo hints, *servinfo, *p;
 
 		memset(&hints, 0, sizeof(hints));
@@ -108,7 +111,7 @@ bool Socket::init()
 
 			if (p == NULL)
 			{ // if we didn't find one...
-				cout<< "blastee: failed to bind socket\n";
+				log("blastee: failed to bind socket");
 
 			}
 			else
@@ -126,7 +129,7 @@ bool Socket::init()
 	{
 		struct addrinfo hints, *servinfo, *p;
 
-		cout<<"socket init for client\n";
+		log("socket init for client");
 
 		memset(&hints, 0, sizeof(hints));
 		hints.ai_family = AF_UNSPEC;
@@ -161,7 +164,7 @@ bool Socket::init()
 
 		if (p == NULL)
 		{
-			printf("blaster: failed to bind socket\n");
+			log("blaster: failed to bind socket");
 		}
 		else
 		{
@@ -181,7 +184,7 @@ bool Socket::sendPacketToServer(Packet packet)
 {
 	vector<char> data = packet.encodePacket();
 
-	cout<<"Sending packet to server of size: " << data.size() << endl;
+	log("Sending packet to server of size: %d", data.size());
 
 	if (sendto(fd_, &data[0], data.size(), 0, addr, addrLen) < 0)
 	{
@@ -196,7 +199,7 @@ bool Socket::sendPacketToClient(Packet packet)
 {
 	vector<char> data = packet.encodePacket();
 
-	cout<<"Sending packet to client of size: " << data.size() << endl;
+	log("Sending packet to client of size: %d", data.size());
 
 	if (sendto(fd_, &data[0], data.size(), 0, (struct sockaddr*) &recvFrom, sizeof(recvFrom)) < 0)
 	{
@@ -224,7 +227,7 @@ Packet Socket::receivePacket()
     packet = Packet::decodePacket(vector<char>(data.begin(), data.begin() + len));
 
 
-    printf("Received %d bytes from %s:%d\n", len, inet_ntoa(recvFrom.sin_addr), ntohs(recvFrom.sin_port));
+    log("Received %d bytes from %s:%d", len, inet_ntoa(recvFrom.sin_addr), ntohs(recvFrom.sin_port));
 
     return packet;
 
@@ -233,5 +236,23 @@ Packet Socket::receivePacket()
 Socket::~Socket()
 {
 	close(fd_);
+}
+
+void Socket::log(const char * format, ... )
+{
+  char buffer[2048];
+  va_list args;
+
+  if (logCbk_ == nullptr)
+  {
+	  return;
+  }
+
+  va_start(args, format);
+  vsnprintf(buffer, 2048, format, args);
+
+  logCbk_(buffer);
+
+  va_end (args);
 }
 

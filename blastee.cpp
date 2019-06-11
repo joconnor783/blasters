@@ -23,26 +23,27 @@ using namespace std;
 #include <Socket.h>
 
 
-class ServerLog : public Log {};
-
-
-
-
 // Flag and signal handler which will be used for SIGINT
 static volatile sig_atomic_t doneflag = 0;
 static void setdoneflag(int signo) {
 	doneflag = 1;
 }
 
-
+void logProxy(char *msg)
+{
+	Log::getInstance().log("%s", msg);
+}
 
 int main(int argc, char **argv)
 {
 	BlasteeLoader config("../../data/blasteeConfig.xml");
 
-	ServerLog::getInstance().init("blastee", config.getLogfilePath());
+	Log::getInstance().init("blastee", config.getLogfilePath());
 
-	ServerLog::getInstance().log("Hello blastee log!");
+	Log::getInstance().log("Hello blastee log!");
+
+	Packet::setLogCallback(logProxy);
+	Socket::setLogCallback(logProxy);
 
 
 	/* Set up signal handler for graceful exit on SIGINT */
@@ -65,7 +66,7 @@ int main(int argc, char **argv)
 
 	if (!success)
 	{
-		ServerLog::getInstance().log("ERROR: could not init blastee socket!");
+		Log::getInstance().log("ERROR: could not init blastee socket!");
 		exit(1);
 	}
 
@@ -79,7 +80,7 @@ int main(int argc, char **argv)
 
 	if (packRecv.getType() == PacketType::pNack)
 	{
-		ServerLog::getInstance().log("ERROR: could not receive packet from client!");
+		Log::getInstance().log("ERROR: could not receive packet from client!");
 	}
 	else
 	{
@@ -88,7 +89,7 @@ int main(int argc, char **argv)
 
 		if (!success)
 		{
-			ServerLog::getInstance().log("ERROR: could not send packet to client!");
+			Log::getInstance().log("ERROR: could not send packet to client!");
 		}
 	}
 

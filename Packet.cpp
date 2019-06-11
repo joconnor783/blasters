@@ -18,7 +18,7 @@
 
 const int kLengthHeader = 4; // First 4 bytes is the length of the packet
 
-LogCallback Packet::logCbk_ = nullptr;
+PacketLogCallback Packet::logCbk_ = nullptr;
 
 
 const vector<char> types {
@@ -147,14 +147,12 @@ void Packet::log(const char * format, ... )
 
   if (logCbk_ == nullptr)
   {
-	  cout << "missing log callback\n";
 	  return;
   }
 
   va_start(args, format);
   vsnprintf(buffer, 2048, format, args);
 
-  cout << "packet calling callback\n";
   logCbk_(buffer);
 
   va_end (args);

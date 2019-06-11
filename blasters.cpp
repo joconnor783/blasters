@@ -22,11 +22,6 @@ using namespace std;
 #include <Socket.h>
 
 
-class ClientLog : public Log {};
-
-
-
-
 // Flag and signal handler which will be used for SIGINT
 static volatile sig_atomic_t doneflag = 0;
 static void setdoneflag(int signo) {
@@ -35,7 +30,7 @@ static void setdoneflag(int signo) {
 
 void logProxy(char *msg)
 {
-	ClientLog::getInstance().log("%s", msg);
+	Log::getInstance().log("%s", msg);
 }
 
 int main(int argc, char **argv)
@@ -43,11 +38,12 @@ int main(int argc, char **argv)
 
 	BlastersLoader config("../../data/blastersConfig.xml");
 
-	ClientLog::getInstance().init("blasters", config.getLogfilePath());
+	Log::getInstance().init("blasters", config.getLogfilePath());
 
-	ClientLog::getInstance().log("Hello blasters log!");
+	Log::getInstance().log("Hello blasters log!");
 
-	Packet::setLogCallback(LogCallback(logProxy));
+	Packet::setLogCallback(logProxy);
+	Socket::setLogCallback(logProxy);
 
 
 	/* nanosleep */
@@ -77,7 +73,7 @@ int main(int argc, char **argv)
 
 	if (!success)
 	{
-		ClientLog::getInstance().log("ERROR: could not init blasters socket!");
+		Log::getInstance().log("ERROR: could not init blasters socket!");
 		exit(1);
 	}
 
@@ -85,21 +81,21 @@ int main(int argc, char **argv)
 
 	Packet packRecv(PacketType::pNack);
 
-	ClientLog::getInstance().log("Blasters sending packet");
+	Log::getInstance().log("Blasters sending packet");
 	success = sock.sendPacketToServer(packSyn);
 
 	if (!success)
 	{
-		ClientLog::getInstance().log("ERROR: could not send packet to server!");
+		Log::getInstance().log("ERROR: could not send packet to server!");
 	}
 	else
 	{
-		ClientLog::getInstance().log("Blasters waiting for packet...");
+		Log::getInstance().log("Blasters waiting for packet...");
 		packRecv = sock.receivePacket();
 
 		if (packRecv.getType() == PacketType::pNack)
 		{
-			ClientLog::getInstance().log("ERROR: could not receive packet from server!");
+			Log::getInstance().log("ERROR: could not receive packet from server!");
 		}
 	}
 

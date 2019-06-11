@@ -16,6 +16,8 @@
 
 using namespace std;
 
+using SocketLogCallback = std::function<void(char *)>;
+
 class Socket {
 public:
 	Socket(string hostname, unsigned short port);
@@ -30,6 +32,8 @@ public:
 	inline string getHostname() {return hostname_;};
 	inline unsigned short getPort() {return port_;};
 
+	static inline void setLogCallback(SocketLogCallback callback) {logCbk_ = callback;};
+
 private:
 	string hostname_;
 	unsigned short port_;
@@ -38,6 +42,9 @@ private:
 	struct sockaddr *addr;
 	socklen_t addrLen;
 	struct sockaddr_in recvFrom;
+
+	static SocketLogCallback logCbk_;
+	static void log( const char * format, ... );
 };
 
 #endif /* SOCKET_H_ */

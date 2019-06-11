@@ -14,7 +14,7 @@
 
 using namespace std;
 
-using LogCallback = std::function<void(char *)>;
+using PacketLogCallback = std::function<void(char *)>;
 
 
 
@@ -50,7 +50,7 @@ public:
 	inline unsigned int getSequence() {return seq_;};
 	inline vector<char> getPayload() {return payload_;};
 
-	static inline void setLogCallback(LogCallback callback) {logCbk_ = callback;};
+	static inline void setLogCallback(PacketLogCallback callback) {logCbk_ = callback;};
 
 private:
 	PacketType type_;
@@ -58,7 +58,7 @@ private:
 	unsigned int seq_;
 	vector<char> payload_;
 
-	static LogCallback logCbk_;
+	static PacketLogCallback logCbk_;
 	static void log( const char * format, ... );
 
 };

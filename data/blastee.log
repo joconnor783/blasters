@@ -15,3 +15,9 @@ Hello blastee log!
 Hello blastee log!
 Hello blastee log!
 Hello blastee log!
+Hello blastee log!
+socket init for server
+decoded packet of size: 16
+Received 16 bytes from 127.0.0.1:49844
+encoded packet of size: 16
+Sending packet to client of size: 16
