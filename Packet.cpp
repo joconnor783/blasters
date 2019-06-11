@@ -18,6 +18,7 @@
 
 const int kLengthHeader = 4; // First 4 bytes is the length of the packet
 
+LogCallback Packet::logCbk_ = nullptr;
 
 
 const vector<char> types {

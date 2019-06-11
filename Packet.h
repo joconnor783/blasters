@@ -16,7 +16,7 @@ using namespace std;
 
 using LogCallback = std::function<void(char *)>;
 
-static LogCallback logCbk_;
+
 
 
 enum PacketType
@@ -58,6 +58,7 @@ private:
 	unsigned int seq_;
 	vector<char> payload_;
 
+	static LogCallback logCbk_;
 	static void log( const char * format, ... );
 
 };
