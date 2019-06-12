@@ -1,8 +1,8 @@
 [
 {
   "directory": "/home/jim/project_files/blasters/build/default",
-  "command": "/usr/bin/c++    -I../../ -I../../rapidxml-1.13  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/blastee.dir/blastee.cpp.o -c /home/jim/project_files/blasters/blastee.cpp",
-  "file": "/home/jim/project_files/blasters/blastee.cpp"
+  "command": "/usr/bin/c++    -I../../ -I../../rapidxml-1.13  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/blastee.dir/blasteeMain.cpp.o -c /home/jim/project_files/blasters/blasteeMain.cpp",
+  "file": "/home/jim/project_files/blasters/blasteeMain.cpp"
 },
 
 {
@@ -37,8 +37,14 @@
 
 {
   "directory": "/home/jim/project_files/blasters/build/default",
-  "command": "/usr/bin/c++    -I../../ -I../../rapidxml-1.13  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/blasters.dir/blasters.cpp.o -c /home/jim/project_files/blasters/blasters.cpp",
-  "file": "/home/jim/project_files/blasters/blasters.cpp"
+  "command": "/usr/bin/c++    -I../../ -I../../rapidxml-1.13  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/blastee.dir/Blastee.cpp.o -c /home/jim/project_files/blasters/Blastee.cpp",
+  "file": "/home/jim/project_files/blasters/Blastee.cpp"
+},
+
+{
+  "directory": "/home/jim/project_files/blasters/build/default",
+  "command": "/usr/bin/c++    -I../../ -I../../rapidxml-1.13  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/blasters.dir/blastersMain.cpp.o -c /home/jim/project_files/blasters/blastersMain.cpp",
+  "file": "/home/jim/project_files/blasters/blastersMain.cpp"
 },
 
 {
@@ -69,5 +75,11 @@
   "directory": "/home/jim/project_files/blasters/build/default",
   "command": "/usr/bin/c++    -I../../ -I../../rapidxml-1.13  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/blasters.dir/BlastersLoader.cpp.o -c /home/jim/project_files/blasters/BlastersLoader.cpp",
   "file": "/home/jim/project_files/blasters/BlastersLoader.cpp"
+},
+
+{
+  "directory": "/home/jim/project_files/blasters/build/default",
+  "command": "/usr/bin/c++    -I../../ -I../../rapidxml-1.13  -O3 -DNDEBUG   -std=c++11 -o CMakeFiles/blasters.dir/Blasters.cpp.o -c /home/jim/project_files/blasters/Blasters.cpp",
+  "file": "/home/jim/project_files/blasters/Blasters.cpp"
 }
 ]

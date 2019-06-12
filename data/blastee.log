@@ -21,3 +21,19 @@ decoded packet of size: 16
 Received 16 bytes from 127.0.0.1:49844
 encoded packet of size: 16
 Sending packet to client of size: 16
+Hello blastee log!
+socket init for server
+blastee: waiting to get blasted!
+
+decoded packet of size: 16
+Received 16 bytes from 127.0.0.1:57585
+encoded packet of size: 16
+Sending packet to client of size: 16
+Hello blastee log!
+socket init for server
+blastee: waiting to get blasted!
+
+decoded packet of size: 16
+Received 16 bytes from 127.0.0.1:41584
+encoded packet of size: 16
+Sending packet to client of size: 16

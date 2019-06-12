@@ -1,41 +1,48 @@
-#include <iostream>
-#include <fstream>
-using namespace std;
+/*
+ * Blastee.cpp
+ *
+ *  Created on: Jun 11, 2019
+ *      Author: jim
+ */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <stdbool.h>
-#include <string.h>
-#include <signal.h>
-#include <sys/time.h>
-#include <ctype.h>
+#include "Blastee.h"
 
 #include <Log.h>
 #include <BlasteeLoader.h>
 #include <Packet.h>
 #include <Socket.h>
 
+#include <csignal>
+#include <atomic>
 
-// Flag and signal handler which will be used for SIGINT
-static volatile sig_atomic_t doneflag = 0;
-static void setdoneflag(int signo) {
-	doneflag = 1;
+using namespace std;
+
+static std::atomic_bool run_;
+
+Blastee::Blastee():
+		init_(false)
+{}
+
+Blastee::~Blastee() {
+	// TODO Auto-generated destructor stub
 }
 
-void logProxy(char *msg)
+void Blastee::signalHandler(int signum)
+{
+	run_ = false;
+}
+
+void Blastee::logProxy(char *msg)
 {
 	Log::getInstance().log("%s", msg);
 }
 
-int main(int argc, char **argv)
+bool Blastee::init()
 {
+	signal(SIGINT, signalHandler);
+
+	run_ = true;
+
 	BlasteeLoader config("../../data/blasteeConfig.xml");
 
 	Log::getInstance().init("blastee", config.getLogfilePath());
@@ -46,18 +53,15 @@ int main(int argc, char **argv)
 	Socket::setLogCallback(logProxy);
 
 
-	/* Set up signal handler for graceful exit on SIGINT */
-	struct sigaction act;
-	act.sa_handler = setdoneflag;
-	act.sa_flags = 0;
-	if ((sigemptyset(&act.sa_mask) == -1) || (sigaction(SIGINT, &act, NULL) == -1)) {
-		perror("Failed to set SIGINT handler");
-		exit(1);
-	}
+	init_ = true;
+
+	return true;
+}
+
+void Blastee::run()
+{
 
 	int port = 45000;
-
-
 
 	/* setup socket */
 	Socket sock(port);
@@ -74,7 +78,7 @@ int main(int argc, char **argv)
 
 	Packet packRecv(PacketType::pNack);
 
-	printf("blastee: waiting to get blasted!\n");
+	Log::getInstance().log("blastee: waiting to get blasted!\n");
 
 	packRecv = sock.receivePacket();
 
@@ -93,7 +97,4 @@ int main(int argc, char **argv)
 		}
 	}
 
-
-	return 0;
 }
-
