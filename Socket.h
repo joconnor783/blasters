@@ -13,6 +13,7 @@
 #include <Packet.h>
 
 #include <arpa/inet.h>
+#include <poll.h>
 
 using namespace std;
 
@@ -28,11 +29,14 @@ public:
 	bool sendPacketToServer(Packet packet);
 	bool sendPacketToClient(Packet packet);
 	Packet receivePacket();
+	int hasData();
 
 	inline string getHostname() {return hostname_;};
 	inline unsigned short getPort() {return port_;};
 
 	static inline void setLogCallback(SocketLogCallback callback) {logCbk_ = callback;};
+
+	inline int getFileDescriptor() {return fd_;};
 
 private:
 	string hostname_;
@@ -42,6 +46,7 @@ private:
 	struct sockaddr *addr;
 	socklen_t addrLen;
 	struct sockaddr_in recvFrom;
+	struct pollfd pfds_[1];
 
 	static SocketLogCallback logCbk_;
 	static void log( const char * format, ... );

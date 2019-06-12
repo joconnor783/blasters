@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include <cstring>
 #include <stdarg.h>
+#include <cerrno>
 
 
 #include <iostream>
@@ -118,6 +119,8 @@ bool Socket::init()
 			{
 				addr = p->ai_addr;
 				addrLen = p->ai_addrlen;
+				pfds_[0].fd = fd_;
+				pfds_[0].events = POLLIN;
 				connected_ = true;
 			}
 
@@ -170,6 +173,8 @@ bool Socket::init()
 		{
 			addr = p->ai_addr;
 			addrLen = p->ai_addrlen;
+			pfds_[0].fd = fd_;
+			pfds_[0].events = POLLIN;
 			connected_ = true;
 		}
 
@@ -231,6 +236,31 @@ Packet Socket::receivePacket()
 
     return packet;
 
+}
+
+int Socket::hasData()
+{
+	int pRet = 0;
+
+	pRet = poll(pfds_, 1, 100);
+
+	if (pRet < 0)
+	{
+		log("poll error: %d", errno);
+	}
+	else if (pRet > 0)
+	{
+		if (pfds_[0].revents & POLLIN)
+		{
+			pRet = 1;
+		}
+		else
+		{
+			pRet = 0;
+		}
+	}
+
+	return pRet;
 }
 
 Socket::~Socket()

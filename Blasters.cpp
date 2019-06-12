@@ -90,11 +90,27 @@ void Blasters::run()
 	else
 	{
 		Log::getInstance().log("Blasters waiting for packet...");
-		packRecv = sock.receivePacket();
 
-		if (packRecv.getType() == PacketType::pNack)
+		while (run_)
 		{
-			Log::getInstance().log("ERROR: could not receive packet from server!");
+			int ret = sock.hasData();
+			if (ret > 0)
+			{
+				packRecv = sock.receivePacket();
+
+				if (packRecv.getType() == PacketType::pNack)
+				{
+					Log::getInstance().log("ERROR: could not receive packet from server!");
+				}
+				else
+				{
+					return;
+				}
+			}
+			else if (ret < 0)
+			{
+				Log::getInstance().log("ERROR: could not poll for data!");
+			}
 		}
 	}
 }

@@ -55,3 +55,65 @@ Sending packet to server of size: 16
 Blasters waiting for packet...
 decoded packet of size: 16
 Received 16 bytes from 127.0.0.1:45000
+Hello Blasters log!
+socket init for client
+Blasters sending packet
+encoded packet of size: 16
+Sending packet to server of size: 16
+Blasters waiting for packet...
+Hello Blasters log!
+socket init for client
+Blasters sending packet
+encoded packet of size: 16
+Sending packet to server of size: 16
+Blasters waiting for packet...
+Hello Blasters log!
+socket init for client
+Blasters sending packet
+encoded packet of size: 16
+Sending packet to server of size: 16
+Blasters waiting for packet...
+decoded packet of size: 16
+Received 16 bytes from 127.0.0.1:45000
+Hello Blasters log!
+socket init for client
+Blasters sending packet
+encoded packet of size: 16
+Sending packet to server of size: 16
+Blasters waiting for packet...
+decoded packet of size: 16
+Received 16 bytes from 127.0.0.1:45000
+Hello Blasters log!
+socket init for client
+Blasters sending packet
+encoded packet of size: 16
+Sending packet to server of size: 16
+Blasters waiting for packet...
+decoded packet of size: 16
+Received 16 bytes from 127.0.0.1:45000
+Hello Blasters log!
+socket init for client
+Blasters sending packet
+encoded packet of size: 16
+Sending packet to server of size: 16
+Blasters waiting for packet...
+poll error: 4
+ERROR: could not poll for data!
+Hello Blasters log!
+socket init for client
+Blasters sending packet
+encoded packet of size: 16
+Sending packet to server of size: 16
+Blasters waiting for packet...
+decoded packet of size: 16
+Received 16 bytes from 127.0.0.1:45000
+poll error: 4
+ERROR: could not poll for data!
+Hello Blasters log!
+socket init for client
+Blasters sending packet
+encoded packet of size: 16
+Sending packet to server of size: 16
+Blasters waiting for packet...
+decoded packet of size: 16
+Received 16 bytes from 127.0.0.1:45000

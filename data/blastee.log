@@ -37,3 +37,55 @@ decoded packet of size: 16
 Received 16 bytes from 127.0.0.1:41584
 encoded packet of size: 16
 Sending packet to client of size: 16
+Hello blastee log!
+socket init for server
+blastee: waiting to get blasted!
+
+Hello blastee log!
+socket init for server
+blastee: waiting to get blasted!
+
+Hello blastee log!
+socket init for server
+blastee: waiting to get blasted!
+
+Hello blastee log!
+socket init for server
+blastee: waiting to get blasted!
+
+decoded packet of size: 16
+Received 16 bytes from 127.0.0.1:54242
+encoded packet of size: 16
+Sending packet to client of size: 16
+poll error: 4
+Hello blastee log!
+socket init for server
+blastee: waiting to get blasted!
+
+decoded packet of size: 16
+Received 16 bytes from 127.0.0.1:34421
+encoded packet of size: 16
+Sending packet to client of size: 16
+poll error: 4
+Hello blastee log!
+socket init for server
+blastee: waiting to get blasted!
+
+decoded packet of size: 16
+Received 16 bytes from 127.0.0.1:46143
+encoded packet of size: 16
+Sending packet to client of size: 16
+Hello blastee log!
+socket init for server
+blastee: waiting to get blasted!
+decoded packet of size: 16
+Received 16 bytes from 127.0.0.1:52343
+encoded packet of size: 16
+Sending packet to client of size: 16
+Hello blastee log!
+socket init for server
+blastee: waiting to get blasted!
+decoded packet of size: 16
+Received 16 bytes from 127.0.0.1:49357
+encoded packet of size: 16
+Sending packet to client of size: 16

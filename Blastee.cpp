@@ -11,7 +11,9 @@
 #include <BlasteeLoader.h>
 #include <Packet.h>
 #include <Socket.h>
+#include <poll.h>
 
+#include <cerrno>
 #include <csignal>
 #include <atomic>
 
@@ -71,29 +73,53 @@ void Blastee::run()
 	if (!success)
 	{
 		Log::getInstance().log("ERROR: could not init blastee socket!");
-		exit(1);
+		return;
 	}
 
 	Packet packSyn(PacketType::pSyn);
 
 	Packet packRecv(PacketType::pNack);
 
-	Log::getInstance().log("blastee: waiting to get blasted!\n");
+	Log::getInstance().log("blastee: waiting to get blasted!");
 
-	packRecv = sock.receivePacket();
+	struct pollfd pfds[1];
 
-	if (packRecv.getType() == PacketType::pNack)
+	pfds[0].fd = sock.getFileDescriptor();
+	pfds[0].events = POLLIN;
+
+	while (run_)
 	{
-		Log::getInstance().log("ERROR: could not receive packet from client!");
-	}
-	else
-	{
+		int pRet;
+		pRet = poll(pfds, 1, 100);
 
-		success = sock.sendPacketToClient(packRecv);
-
-		if (!success)
+		if (pRet < 0)
 		{
-			Log::getInstance().log("ERROR: could not send packet to client!");
+			Log::getInstance().log("poll error: %d", errno);
+		}
+		else if (pRet > 0)
+		{
+			if (pfds[0].revents & POLLIN)
+			{
+				packRecv = sock.receivePacket();
+
+				if (packRecv.getType() == PacketType::pNack)
+				{
+					Log::getInstance().log("ERROR: could not receive packet from client!");
+				}
+				else
+				{
+					success = sock.sendPacketToClient(packRecv);
+
+					if (!success)
+					{
+						Log::getInstance().log("ERROR: could not send packet to client!");
+					}
+					else
+					{
+						return;
+					}
+				}
+			}
 		}
 	}
 
